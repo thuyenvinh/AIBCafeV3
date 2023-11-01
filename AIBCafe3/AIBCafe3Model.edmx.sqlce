@@ -1,0 +1,506 @@
+
+-- --------------------------------------------------
+-- Entity Designer DDL Script for SQL Server Compact Edition
+-- --------------------------------------------------
+-- Date Created: 05/16/2011 15:59:25
+-- Generated from EDMX file: D:\AIBSoft\SOFT\AIBCafe3\AIBCafe3\AIBCafe3Model.edmx
+-- --------------------------------------------------
+
+
+-- --------------------------------------------------
+-- Dropping existing FOREIGN KEY constraints
+-- NOTE: if the constraint does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    ALTER TABLE [BillDetails] DROP CONSTRAINT [FK_BillBillDetail];
+GO
+    ALTER TABLE [BillDetails] DROP CONSTRAINT [FK_BillDetail_Product];
+GO
+    ALTER TABLE [Bills] DROP CONSTRAINT [FK_Bill_Item];
+GO
+    ALTER TABLE [Bills] DROP CONSTRAINT [FK_Bills_Employees];
+GO
+    ALTER TABLE [Inwards] DROP CONSTRAINT [FK_Inwards_Employees];
+GO
+    ALTER TABLE [InwardDetails] DROP CONSTRAINT [FK_InwardDetail_Inward];
+GO
+    ALTER TABLE [InwardDetails] DROP CONSTRAINT [FK_InwardDetail_Product];
+GO
+    ALTER TABLE [Items] DROP CONSTRAINT [FK_Item_ItemType];
+GO
+    ALTER TABLE [OrderTypeDetails] DROP CONSTRAINT [FK_OrderTypeDetails_OrderTypes];
+GO
+    ALTER TABLE [Products] DROP CONSTRAINT [FK_Product_ProductGroup1];
+GO
+    ALTER TABLE [Quantitatives] DROP CONSTRAINT [FK_UnitQuantitative];
+GO
+    ALTER TABLE [Assemblies] DROP CONSTRAINT [FK_ProductAssembly];
+GO
+
+-- --------------------------------------------------
+-- Dropping existing tables
+-- NOTE: if the table does not exist, an ignorable error will be reported.
+-- --------------------------------------------------
+
+    DROP TABLE [BillDetails];
+GO
+    DROP TABLE [Bills];
+GO
+    DROP TABLE [Configs];
+GO
+    DROP TABLE [Employees];
+GO
+    DROP TABLE [InwardDetails];
+GO
+    DROP TABLE [Inwards];
+GO
+    DROP TABLE [Items];
+GO
+    DROP TABLE [ItemTypes];
+GO
+    DROP TABLE [OrderTypeDetails];
+GO
+    DROP TABLE [OrderTypes];
+GO
+    DROP TABLE [ProductGroups];
+GO
+    DROP TABLE [Products];
+GO
+    DROP TABLE [Units];
+GO
+    DROP TABLE [Quantitatives];
+GO
+    DROP TABLE [Assemblies];
+GO
+
+-- --------------------------------------------------
+-- Creating all tables
+-- --------------------------------------------------
+
+-- Creating table 'BillDetails'
+CREATE TABLE [BillDetails] (
+    [BillDetailID] uniqueidentifier  NOT NULL,
+    [ProductID] uniqueidentifier  NULL,
+    [Price] decimal(18,0)  NULL,
+    [Quantity] real  NULL,
+    [BillID] uniqueidentifier  NOT NULL
+);
+GO
+
+-- Creating table 'Bills'
+CREATE TABLE [Bills] (
+    [BillID] uniqueidentifier  NOT NULL,
+    [ItemID] uniqueidentifier  NULL,
+    [Date] datetime  NULL,
+    [DateEnd] datetime  NULL,
+    [EmployeesID] uniqueidentifier  NULL,
+    [Description] nvarchar(50)  NULL,
+    [Amount] decimal(18,0)  NULL,
+    [Discount] tinyint  NULL
+);
+GO
+
+-- Creating table 'Configs'
+CREATE TABLE [Configs] (
+    [ConfigID] uniqueidentifier  NOT NULL,
+    [Company] nvarchar(50)  NULL,
+    [Address] nvarchar(50)  NULL,
+    [Tel] nvarchar(50)  NULL,
+    [Email] nvarchar(50)  NULL,
+    [Website] nvarchar(50)  NULL,
+    [Sologan] nvarchar(50)  NULL,
+    [DateEnd] datetime  NULL
+);
+GO
+
+-- Creating table 'Employees'
+CREATE TABLE [Employees] (
+    [EmployeesID] uniqueidentifier  NOT NULL,
+    [Password] nvarchar(50)  NULL,
+    [Name] nvarchar(50)  NULL,
+    [Sell] bit  NULL,
+    [InWard] bit  NULL,
+    [Report] bit  NULL,
+    [Empl] bit  NULL,
+    [Product] bit  NULL,
+    [Item] bit  NULL,
+    [LoginName] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- Creating table 'InwardDetails'
+CREATE TABLE [InwardDetails] (
+    [InwardDetailID] uniqueidentifier  NOT NULL,
+    [InwardID] uniqueidentifier  NULL,
+    [ProductID] uniqueidentifier  NULL,
+    [Price] decimal(18,0)  NULL,
+    [Quantity] int  NULL
+);
+GO
+
+-- Creating table 'Inwards'
+CREATE TABLE [Inwards] (
+    [InwardID] uniqueidentifier  NOT NULL,
+    [EmployeesID] uniqueidentifier  NULL,
+    [Date] datetime  NULL,
+    [Amount] decimal(18,0)  NULL,
+    [Description] nvarchar(50)  NOT NULL
+);
+GO
+
+-- Creating table 'Items'
+CREATE TABLE [Items] (
+    [ItemID] uniqueidentifier  NOT NULL,
+    [Name] nchar(50)  NULL,
+    [ItemTypeID] uniqueidentifier  NULL,
+    [Status] bit  NULL,
+    [DisplayOrder] smallint  NULL,
+    [Active] bit  NULL
+);
+GO
+
+-- Creating table 'ItemTypes'
+CREATE TABLE [ItemTypes] (
+    [ItemTypeID] uniqueidentifier  NOT NULL,
+    [Name] nvarchar(50)  NULL,
+    [Price] decimal(18,0)  NULL,
+    [Timing] bit  NULL,
+    [DisplayOrder] smallint  NULL,
+    [Active] bit  NULL
+);
+GO
+
+-- Creating table 'OrderTypeDetails'
+CREATE TABLE [OrderTypeDetails] (
+    [Id] uniqueidentifier  NOT NULL,
+    [OrderID] uniqueidentifier  NOT NULL,
+    [ProductID] nvarchar(100)  NOT NULL,
+    [Discount] nvarchar(100)  NOT NULL
+);
+GO
+
+-- Creating table 'OrderTypes'
+CREATE TABLE [OrderTypes] (
+    [OrderID] uniqueidentifier  NOT NULL,
+    [OrderName] nvarchar(50)  NULL,
+    [Description] nvarchar(100)  NULL
+);
+GO
+
+-- Creating table 'ProductGroups'
+CREATE TABLE [ProductGroups] (
+    [ProductGroupID] uniqueidentifier  NOT NULL,
+    [Name] nvarchar(50)  NULL,
+    [DisplayOrder] smallint  NULL,
+    [Report] bit  NULL
+);
+GO
+
+-- Creating table 'Products'
+CREATE TABLE [Products] (
+    [ProductID] uniqueidentifier  NOT NULL,
+    [ProductGroupID] uniqueidentifier  NOT NULL,
+    [ProductName] nvarchar(50)  NOT NULL,
+    [DisplayOrder] smallint  NULL,
+    [UnitID] uniqueidentifier  NULL,
+    [Price] decimal(18,0)  NULL,
+    [Active] bit  NULL,
+    [Show] bit  NULL
+);
+GO
+
+-- Creating table 'Units'
+CREATE TABLE [Units] (
+    [Id] uniqueidentifier  NOT NULL,
+    [UnitName] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- Creating table 'Quantitatives'
+CREATE TABLE [Quantitatives] (
+    [Id] uniqueidentifier  NOT NULL,
+    [UnitID_Parent] uniqueidentifier  NOT NULL,
+    [UnitID] uniqueidentifier  NOT NULL,
+    [Quantity] smallint  NOT NULL
+);
+GO
+
+-- Creating table 'Assemblies'
+CREATE TABLE [Assemblies] (
+    [Id] uniqueidentifier  NOT NULL,
+    [ProductID_Parent] uniqueidentifier  NOT NULL,
+    [ProductID] uniqueidentifier  NOT NULL,
+    [Quantity] smallint  NOT NULL,
+    [Description] nvarchar(4000)  NOT NULL
+);
+GO
+
+-- --------------------------------------------------
+-- Creating all PRIMARY KEY constraints
+-- --------------------------------------------------
+
+-- Creating primary key on [BillDetailID] in table 'BillDetails'
+ALTER TABLE [BillDetails]
+ADD CONSTRAINT [PK_BillDetails]
+    PRIMARY KEY ([BillDetailID] );
+GO
+
+-- Creating primary key on [BillID] in table 'Bills'
+ALTER TABLE [Bills]
+ADD CONSTRAINT [PK_Bills]
+    PRIMARY KEY ([BillID] );
+GO
+
+-- Creating primary key on [ConfigID] in table 'Configs'
+ALTER TABLE [Configs]
+ADD CONSTRAINT [PK_Configs]
+    PRIMARY KEY ([ConfigID] );
+GO
+
+-- Creating primary key on [EmployeesID] in table 'Employees'
+ALTER TABLE [Employees]
+ADD CONSTRAINT [PK_Employees]
+    PRIMARY KEY ([EmployeesID] );
+GO
+
+-- Creating primary key on [InwardDetailID] in table 'InwardDetails'
+ALTER TABLE [InwardDetails]
+ADD CONSTRAINT [PK_InwardDetails]
+    PRIMARY KEY ([InwardDetailID] );
+GO
+
+-- Creating primary key on [InwardID] in table 'Inwards'
+ALTER TABLE [Inwards]
+ADD CONSTRAINT [PK_Inwards]
+    PRIMARY KEY ([InwardID] );
+GO
+
+-- Creating primary key on [ItemID] in table 'Items'
+ALTER TABLE [Items]
+ADD CONSTRAINT [PK_Items]
+    PRIMARY KEY ([ItemID] );
+GO
+
+-- Creating primary key on [ItemTypeID] in table 'ItemTypes'
+ALTER TABLE [ItemTypes]
+ADD CONSTRAINT [PK_ItemTypes]
+    PRIMARY KEY ([ItemTypeID] );
+GO
+
+-- Creating primary key on [Id] in table 'OrderTypeDetails'
+ALTER TABLE [OrderTypeDetails]
+ADD CONSTRAINT [PK_OrderTypeDetails]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [OrderID] in table 'OrderTypes'
+ALTER TABLE [OrderTypes]
+ADD CONSTRAINT [PK_OrderTypes]
+    PRIMARY KEY ([OrderID] );
+GO
+
+-- Creating primary key on [ProductGroupID] in table 'ProductGroups'
+ALTER TABLE [ProductGroups]
+ADD CONSTRAINT [PK_ProductGroups]
+    PRIMARY KEY ([ProductGroupID] );
+GO
+
+-- Creating primary key on [ProductID] in table 'Products'
+ALTER TABLE [Products]
+ADD CONSTRAINT [PK_Products]
+    PRIMARY KEY ([ProductID] );
+GO
+
+-- Creating primary key on [Id] in table 'Units'
+ALTER TABLE [Units]
+ADD CONSTRAINT [PK_Units]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Quantitatives'
+ALTER TABLE [Quantitatives]
+ADD CONSTRAINT [PK_Quantitatives]
+    PRIMARY KEY ([Id] );
+GO
+
+-- Creating primary key on [Id] in table 'Assemblies'
+ALTER TABLE [Assemblies]
+ADD CONSTRAINT [PK_Assemblies]
+    PRIMARY KEY ([Id] );
+GO
+
+-- --------------------------------------------------
+-- Creating all FOREIGN KEY constraints
+-- --------------------------------------------------
+
+-- Creating foreign key on [BillID] in table 'BillDetails'
+ALTER TABLE [BillDetails]
+ADD CONSTRAINT [FK_BillBillDetail]
+    FOREIGN KEY ([BillID])
+    REFERENCES [Bills]
+        ([BillID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BillBillDetail'
+CREATE INDEX [IX_FK_BillBillDetail]
+ON [BillDetails]
+    ([BillID]);
+GO
+
+-- Creating foreign key on [ProductID] in table 'BillDetails'
+ALTER TABLE [BillDetails]
+ADD CONSTRAINT [FK_BillDetail_Product]
+    FOREIGN KEY ([ProductID])
+    REFERENCES [Products]
+        ([ProductID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_BillDetail_Product'
+CREATE INDEX [IX_FK_BillDetail_Product]
+ON [BillDetails]
+    ([ProductID]);
+GO
+
+-- Creating foreign key on [ItemID] in table 'Bills'
+ALTER TABLE [Bills]
+ADD CONSTRAINT [FK_Bill_Item]
+    FOREIGN KEY ([ItemID])
+    REFERENCES [Items]
+        ([ItemID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Bill_Item'
+CREATE INDEX [IX_FK_Bill_Item]
+ON [Bills]
+    ([ItemID]);
+GO
+
+-- Creating foreign key on [EmployeesID] in table 'Bills'
+ALTER TABLE [Bills]
+ADD CONSTRAINT [FK_Bills_Employees]
+    FOREIGN KEY ([EmployeesID])
+    REFERENCES [Employees]
+        ([EmployeesID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Bills_Employees'
+CREATE INDEX [IX_FK_Bills_Employees]
+ON [Bills]
+    ([EmployeesID]);
+GO
+
+-- Creating foreign key on [EmployeesID] in table 'Inwards'
+ALTER TABLE [Inwards]
+ADD CONSTRAINT [FK_Inwards_Employees]
+    FOREIGN KEY ([EmployeesID])
+    REFERENCES [Employees]
+        ([EmployeesID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Inwards_Employees'
+CREATE INDEX [IX_FK_Inwards_Employees]
+ON [Inwards]
+    ([EmployeesID]);
+GO
+
+-- Creating foreign key on [InwardID] in table 'InwardDetails'
+ALTER TABLE [InwardDetails]
+ADD CONSTRAINT [FK_InwardDetail_Inward]
+    FOREIGN KEY ([InwardID])
+    REFERENCES [Inwards]
+        ([InwardID])
+    ON DELETE CASCADE ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_InwardDetail_Inward'
+CREATE INDEX [IX_FK_InwardDetail_Inward]
+ON [InwardDetails]
+    ([InwardID]);
+GO
+
+-- Creating foreign key on [ProductID] in table 'InwardDetails'
+ALTER TABLE [InwardDetails]
+ADD CONSTRAINT [FK_InwardDetail_Product]
+    FOREIGN KEY ([ProductID])
+    REFERENCES [Products]
+        ([ProductID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_InwardDetail_Product'
+CREATE INDEX [IX_FK_InwardDetail_Product]
+ON [InwardDetails]
+    ([ProductID]);
+GO
+
+-- Creating foreign key on [ItemTypeID] in table 'Items'
+ALTER TABLE [Items]
+ADD CONSTRAINT [FK_Item_ItemType]
+    FOREIGN KEY ([ItemTypeID])
+    REFERENCES [ItemTypes]
+        ([ItemTypeID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Item_ItemType'
+CREATE INDEX [IX_FK_Item_ItemType]
+ON [Items]
+    ([ItemTypeID]);
+GO
+
+-- Creating foreign key on [OrderID] in table 'OrderTypeDetails'
+ALTER TABLE [OrderTypeDetails]
+ADD CONSTRAINT [FK_OrderTypeDetails_OrderTypes]
+    FOREIGN KEY ([OrderID])
+    REFERENCES [OrderTypes]
+        ([OrderID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_OrderTypeDetails_OrderTypes'
+CREATE INDEX [IX_FK_OrderTypeDetails_OrderTypes]
+ON [OrderTypeDetails]
+    ([OrderID]);
+GO
+
+-- Creating foreign key on [ProductGroupID] in table 'Products'
+ALTER TABLE [Products]
+ADD CONSTRAINT [FK_Product_ProductGroup1]
+    FOREIGN KEY ([ProductGroupID])
+    REFERENCES [ProductGroups]
+        ([ProductGroupID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_Product_ProductGroup1'
+CREATE INDEX [IX_FK_Product_ProductGroup1]
+ON [Products]
+    ([ProductGroupID]);
+GO
+
+-- Creating foreign key on [UnitID_Parent] in table 'Quantitatives'
+ALTER TABLE [Quantitatives]
+ADD CONSTRAINT [FK_UnitQuantitative]
+    FOREIGN KEY ([UnitID_Parent])
+    REFERENCES [Units]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_UnitQuantitative'
+CREATE INDEX [IX_FK_UnitQuantitative]
+ON [Quantitatives]
+    ([UnitID_Parent]);
+GO
+
+-- Creating foreign key on [ProductID_Parent] in table 'Assemblies'
+ALTER TABLE [Assemblies]
+ADD CONSTRAINT [FK_ProductAssembly]
+    FOREIGN KEY ([ProductID_Parent])
+    REFERENCES [Products]
+        ([ProductID])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_ProductAssembly'
+CREATE INDEX [IX_FK_ProductAssembly]
+ON [Assemblies]
+    ([ProductID_Parent]);
+GO
+
+-- --------------------------------------------------
+-- Script has ended
+-- --------------------------------------------------

@@ -1,0 +1,372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="BillDetails" EntityType="DatabaseModel.Store.BillDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Bills" EntityType="DatabaseModel.Store.Bills" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Configs" EntityType="DatabaseModel.Store.Configs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Employees" EntityType="DatabaseModel.Store.Employees" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="InwardDetails" EntityType="DatabaseModel.Store.InwardDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Inwards" EntityType="DatabaseModel.Store.Inwards" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Items" EntityType="DatabaseModel.Store.Items" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ItemTypes" EntityType="DatabaseModel.Store.ItemTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderTypeDetails" EntityType="DatabaseModel.Store.OrderTypeDetails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OrderTypes" EntityType="DatabaseModel.Store.OrderTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProductGroups" EntityType="DatabaseModel.Store.ProductGroups" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Products" EntityType="DatabaseModel.Store.Products" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Units" EntityType="DatabaseModel.Store.Units" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Quantitatives" EntityType="DatabaseModel.Store.Quantitatives" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Assemblies" EntityType="DatabaseModel.Store.Assemblies" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_BillBillDetail" Association="DatabaseModel.Store.FK_BillBillDetail">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillDetail_Product" Association="DatabaseModel.Store.FK_BillDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Item" Association="DatabaseModel.Store.FK_Bill_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bills_Employees" Association="DatabaseModel.Store.FK_Bills_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inwards_Employees" Association="DatabaseModel.Store.FK_Inwards_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Inward" EntitySet="Inwards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardDetail_Inward" Association="DatabaseModel.Store.FK_InwardDetail_Inward">
+      <End Role="Inward" EntitySet="Inwards" />
+      <End Role="InwardDetail" EntitySet="InwardDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardDetail_Product" Association="DatabaseModel.Store.FK_InwardDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="InwardDetail" EntitySet="InwardDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemType" Association="DatabaseModel.Store.FK_Item_ItemType">
+      <End Role="ItemType" EntitySet="ItemTypes" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderTypeDetails_OrderTypes" Association="DatabaseModel.Store.FK_OrderTypeDetails_OrderTypes">
+      <End Role="OrderType" EntitySet="OrderTypes" />
+      <End Role="OrderTypeDetail" EntitySet="OrderTypeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductGroup1" Association="DatabaseModel.Store.FK_Product_ProductGroup1">
+      <End Role="ProductGroup" EntitySet="ProductGroups" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="UnitQuantitative" Association="DatabaseModel.Store.UnitQuantitative">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Quantitative" EntitySet="Quantitatives" />
+    </AssociationSet>
+    <AssociationSet Name="ProductAssembly" Association="DatabaseModel.Store.ProductAssembly">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Assembly" EntitySet="Assemblies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BillDetails">
+    <Key>
+      <PropertyRef Name="BillDetailID" />
+    </Key>
+    <Property Name="BillDetailID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Price" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Quantity" Type="real" Nullable="true" />
+    <Property Name="BillID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bills">
+    <Key>
+      <PropertyRef Name="BillID" />
+    </Key>
+    <Property Name="BillID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ItemID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="DateEnd" Type="datetime" Nullable="true" />
+    <Property Name="EmployeesID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Amount" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Discount" Type="tinyint" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Configs">
+    <Key>
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="ConfigID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Company" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Tel" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Website" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Sologan" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DateEnd" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeesID" />
+    </Key>
+    <Property Name="EmployeesID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Sell" Type="bit" Nullable="true" />
+    <Property Name="InWard" Type="bit" Nullable="true" />
+    <Property Name="Report" Type="bit" Nullable="true" />
+    <Property Name="Empl" Type="bit" Nullable="true" />
+    <Property Name="Product" Type="bit" Nullable="true" />
+    <Property Name="Item" Type="bit" Nullable="true" />
+    <Property Name="LoginName" Type="nvarchar" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InwardDetails">
+    <Key>
+      <PropertyRef Name="InwardDetailID" />
+    </Key>
+    <Property Name="InwardDetailID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InwardID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="ProductID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Price" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Quantity" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Inwards">
+    <Key>
+      <PropertyRef Name="InwardID" />
+    </Key>
+    <Property Name="InwardID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmployeesID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Date" Type="datetime" Nullable="true" />
+    <Property Name="Amount" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nchar" Nullable="true" MaxLength="50" />
+    <Property Name="ItemTypeID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Status" Type="bit" Nullable="true" />
+    <Property Name="DisplayOrder" Type="smallint" Nullable="true" />
+    <Property Name="Active" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="ItemTypes">
+    <Key>
+      <PropertyRef Name="ItemTypeID" />
+    </Key>
+    <Property Name="ItemTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Price" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Timing" Type="bit" Nullable="true" />
+    <Property Name="DisplayOrder" Type="smallint" Nullable="true" />
+    <Property Name="Active" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="OrderTypeDetails">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductID" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Discount" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="OrderTypes">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderName" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="ProductGroups">
+    <Key>
+      <PropertyRef Name="ProductGroupID" />
+    </Key>
+    <Property Name="ProductGroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DisplayOrder" Type="smallint" Nullable="true" />
+    <Property Name="Report" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductGroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DisplayOrder" Type="smallint" Nullable="true" />
+    <Property Name="UnitID" Type="uniqueidentifier" Nullable="true" />
+    <Property Name="Price" Type="decimal" Nullable="true" Precision="18" Scale="0" />
+    <Property Name="Active" Type="bit" Nullable="true" />
+    <Property Name="Show" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Units">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UnitName" Type="nvarchar" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Quantitatives">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UnitID_Parent" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="UnitID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Assemblies">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductID_Parent" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Quantity" Type="smallint" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BillBillDetail">
+    <End Role="Bill" Type="DatabaseModel.Store.Bills" Multiplicity="1" />
+    <End Role="BillDetail" Type="DatabaseModel.Store.BillDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="BillID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillDetail_Product">
+    <End Role="Product" Type="DatabaseModel.Store.Products" Multiplicity="0..1" />
+    <End Role="BillDetail" Type="DatabaseModel.Store.BillDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Item">
+    <End Role="Item" Type="DatabaseModel.Store.Items" Multiplicity="0..1" />
+    <End Role="Bill" Type="DatabaseModel.Store.Bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bills_Employees">
+    <End Role="Employee" Type="DatabaseModel.Store.Employees" Multiplicity="0..1" />
+    <End Role="Bill" Type="DatabaseModel.Store.Bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeesID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="EmployeesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inwards_Employees">
+    <End Role="Employee" Type="DatabaseModel.Store.Employees" Multiplicity="0..1" />
+    <End Role="Inward" Type="DatabaseModel.Store.Inwards" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeesID" />
+      </Principal>
+      <Dependent Role="Inward">
+        <PropertyRef Name="EmployeesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardDetail_Inward">
+    <End Role="Inward" Type="DatabaseModel.Store.Inwards" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="InwardDetail" Type="DatabaseModel.Store.InwardDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inward">
+        <PropertyRef Name="InwardID" />
+      </Principal>
+      <Dependent Role="InwardDetail">
+        <PropertyRef Name="InwardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardDetail_Product">
+    <End Role="Product" Type="DatabaseModel.Store.Products" Multiplicity="0..1" />
+    <End Role="InwardDetail" Type="DatabaseModel.Store.InwardDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="InwardDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemType">
+    <End Role="ItemType" Type="DatabaseModel.Store.ItemTypes" Multiplicity="0..1" />
+    <End Role="Item" Type="DatabaseModel.Store.Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemType">
+        <PropertyRef Name="ItemTypeID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="ItemTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderTypeDetails_OrderTypes">
+    <End Role="OrderType" Type="DatabaseModel.Store.OrderTypes" Multiplicity="1" />
+    <End Role="OrderTypeDetail" Type="DatabaseModel.Store.OrderTypeDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderType">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderTypeDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductGroup1">
+    <End Role="ProductGroup" Type="DatabaseModel.Store.ProductGroups" Multiplicity="1" />
+    <End Role="Product" Type="DatabaseModel.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductGroup">
+        <PropertyRef Name="ProductGroupID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UnitQuantitative">
+    <End Role="Unit" Type="DatabaseModel.Store.Units" Multiplicity="1" />
+    <End Role="Quantitative" Type="DatabaseModel.Store.Quantitatives" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quantitative">
+        <PropertyRef Name="UnitID_Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductAssembly">
+    <End Role="Product" Type="DatabaseModel.Store.Products" Multiplicity="1" />
+    <End Role="Assembly" Type="DatabaseModel.Store.Assemblies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Assembly">
+        <PropertyRef Name="ProductID_Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

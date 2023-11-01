@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlServerCe.3.5" ProviderManifestToken="3.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="BillDetails" EntityType="DatabaseModel.Store.BillDetails" store:Type="Tables" />
+    <EntitySet Name="Bills" EntityType="DatabaseModel.Store.Bills" store:Type="Tables" />
+    <EntitySet Name="Configs" EntityType="DatabaseModel.Store.Configs" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="DatabaseModel.Store.Employees" store:Type="Tables" />
+    <EntitySet Name="InwardDetails" EntityType="DatabaseModel.Store.InwardDetails" store:Type="Tables" />
+    <EntitySet Name="Inwards" EntityType="DatabaseModel.Store.Inwards" store:Type="Tables" />
+    <EntitySet Name="Items" EntityType="DatabaseModel.Store.Items" store:Type="Tables" />
+    <EntitySet Name="ItemTypes" EntityType="DatabaseModel.Store.ItemTypes" store:Type="Tables" />
+    <EntitySet Name="OrderTypes" EntityType="DatabaseModel.Store.OrderTypes" store:Type="Tables" />
+    <EntitySet Name="ProductGroups" EntityType="DatabaseModel.Store.ProductGroups" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="DatabaseModel.Store.Products" store:Type="Tables" />
+    <AssociationSet Name="FK_Bill_Item" Association="DatabaseModel.Store.FK_Bill_Item">
+      <End Role="Items" EntitySet="Items" />
+      <End Role="Bills" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillBillDetail" Association="DatabaseModel.Store.FK_BillBillDetail">
+      <End Role="Bills" EntitySet="Bills" />
+      <End Role="BillDetails" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillDetail_Product" Association="DatabaseModel.Store.FK_BillDetail_Product">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="BillDetails" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardDetail_Inward" Association="DatabaseModel.Store.FK_InwardDetail_Inward">
+      <End Role="Inwards" EntitySet="Inwards" />
+      <End Role="InwardDetails" EntitySet="InwardDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardDetail_Product" Association="DatabaseModel.Store.FK_InwardDetail_Product">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="InwardDetails" EntitySet="InwardDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemType" Association="DatabaseModel.Store.FK_Item_ItemType">
+      <End Role="ItemTypes" EntitySet="ItemTypes" />
+      <End Role="Items" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductGroup1" Association="DatabaseModel.Store.FK_Product_ProductGroup1">
+      <End Role="ProductGroups" EntitySet="ProductGroups" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BillDetails">
+    <Key>
+      <PropertyRef Name="BillDetailID" />
+    </Key>
+    <Property Name="BillDetailID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductID" Type="uniqueidentifier" />
+    <Property Name="Price" Type="numeric" />
+    <Property Name="Quantity" Type="real" />
+    <Property Name="BillID" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Bills">
+    <Key>
+      <PropertyRef Name="BillID" />
+    </Key>
+    <Property Name="BillID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ItemID" Type="uniqueidentifier" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="DateEnd" Type="datetime" />
+    <Property Name="EmployeesID" Type="nvarchar" MaxLength="30" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Amount" Type="numeric" />
+    <Property Name="Discount" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Configs">
+    <Key>
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Name="ConfigID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Company" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Website" Type="nvarchar" MaxLength="50" />
+    <Property Name="Sologan" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateEnd" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeesID" />
+    </Key>
+    <Property Name="EmployeesID" Type="nvarchar" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Permission" Type="int" />
+  </EntityType>
+  <EntityType Name="InwardDetails">
+    <Key>
+      <PropertyRef Name="InwardDetailID" />
+    </Key>
+    <Property Name="InwardDetailID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="InwardID" Type="uniqueidentifier" />
+    <Property Name="ProductID" Type="uniqueidentifier" />
+    <Property Name="Price" Type="numeric" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Inwards">
+    <Key>
+      <PropertyRef Name="InwardID" />
+    </Key>
+    <Property Name="InwardID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="EmployeesID" Type="nvarchar" MaxLength="30" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Amount" Type="numeric" />
+    <Property Name="Description" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Items">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Name="ItemID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nchar" MaxLength="10" />
+    <Property Name="ItemTypeID" Type="uniqueidentifier" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="DisplayOrder" Type="smallint" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="ItemTypes">
+    <Key>
+      <PropertyRef Name="ItemTypeID" />
+    </Key>
+    <Property Name="ItemTypeID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="numeric" />
+    <Property Name="Timing" Type="bit" />
+    <Property Name="DisplayOrder" Type="smallint" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="OrderTypes">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="OrderName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Discount" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="ProductGroups">
+    <Key>
+      <PropertyRef Name="ProductGroupID" />
+    </Key>
+    <Property Name="ProductGroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="DisplayOrder" Type="smallint" />
+    <Property Name="Report" Type="bit" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductGroupID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="ProductName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="DisplayOrder" Type="smallint" />
+    <Property Name="Unit" Type="nvarchar" MaxLength="50" />
+    <Property Name="Price" Type="numeric" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Show" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Bill_Item">
+    <End Role="Items" Type="DatabaseModel.Store.Items" Multiplicity="0..1" />
+    <End Role="Bills" Type="DatabaseModel.Store.Bills" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Items">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="Bills">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillBillDetail">
+    <End Role="Bills" Type="DatabaseModel.Store.Bills" Multiplicity="1" />
+    <End Role="BillDetails" Type="DatabaseModel.Store.BillDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bills">
+        <PropertyRef Name="BillID" />
+      </Principal>
+      <Dependent Role="BillDetails">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillDetail_Product">
+    <End Role="Products" Type="DatabaseModel.Store.Products" Multiplicity="0..1" />
+    <End Role="BillDetails" Type="DatabaseModel.Store.BillDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="BillDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardDetail_Inward">
+    <End Role="Inwards" Type="DatabaseModel.Store.Inwards" Multiplicity="0..1" />
+    <End Role="InwardDetails" Type="DatabaseModel.Store.InwardDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inwards">
+        <PropertyRef Name="InwardID" />
+      </Principal>
+      <Dependent Role="InwardDetails">
+        <PropertyRef Name="InwardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardDetail_Product">
+    <End Role="Products" Type="DatabaseModel.Store.Products" Multiplicity="0..1" />
+    <End Role="InwardDetails" Type="DatabaseModel.Store.InwardDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="InwardDetails">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemType">
+    <End Role="ItemTypes" Type="DatabaseModel.Store.ItemTypes" Multiplicity="0..1" />
+    <End Role="Items" Type="DatabaseModel.Store.Items" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemTypes">
+        <PropertyRef Name="ItemTypeID" />
+      </Principal>
+      <Dependent Role="Items">
+        <PropertyRef Name="ItemTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductGroup1">
+    <End Role="ProductGroups" Type="DatabaseModel.Store.ProductGroups" Multiplicity="1" />
+    <End Role="Products" Type="DatabaseModel.Store.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductGroups">
+        <PropertyRef Name="ProductGroupID" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="ProductGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

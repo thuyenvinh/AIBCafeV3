@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DatabaseModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+  <EntityContainer Name="AIBCafe3Entities" annotation:LazyLoadingEnabled="false">
+    <EntitySet Name="BillDetails" EntityType="DatabaseModel.BillDetail" />
+    <EntitySet Name="Bills" EntityType="DatabaseModel.Bill" />
+    <EntitySet Name="Configs" EntityType="DatabaseModel.Config" />
+    <EntitySet Name="Employees" EntityType="DatabaseModel.Employee" />
+    <EntitySet Name="InwardDetails" EntityType="DatabaseModel.InwardDetail" />
+    <EntitySet Name="Inwards" EntityType="DatabaseModel.Inward" />
+    <EntitySet Name="Items" EntityType="DatabaseModel.Item" />
+    <EntitySet Name="ItemTypes" EntityType="DatabaseModel.ItemType" />
+    <EntitySet Name="OrderTypeDetails" EntityType="DatabaseModel.OrderTypeDetail" />
+    <EntitySet Name="OrderTypes" EntityType="DatabaseModel.OrderType" />
+    <EntitySet Name="ProductGroups" EntityType="DatabaseModel.ProductGroup" />
+    <EntitySet Name="Products" EntityType="DatabaseModel.Product" />
+    <AssociationSet Name="FK_BillBillDetail" Association="DatabaseModel.FK_BillBillDetail">
+      <End Role="Bill" EntitySet="Bills" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BillDetail_Product" Association="DatabaseModel.FK_BillDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="BillDetail" EntitySet="BillDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bill_Item" Association="DatabaseModel.FK_Bill_Item">
+      <End Role="Item" EntitySet="Items" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Bills_Employees" Association="DatabaseModel.FK_Bills_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Bill" EntitySet="Bills" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inwards_Employees" Association="DatabaseModel.FK_Inwards_Employees">
+      <End Role="Employee" EntitySet="Employees" />
+      <End Role="Inward" EntitySet="Inwards" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardDetail_Inward" Association="DatabaseModel.FK_InwardDetail_Inward">
+      <End Role="Inward" EntitySet="Inwards" />
+      <End Role="InwardDetail" EntitySet="InwardDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InwardDetail_Product" Association="DatabaseModel.FK_InwardDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="InwardDetail" EntitySet="InwardDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_ItemType" Association="DatabaseModel.FK_Item_ItemType">
+      <End Role="ItemType" EntitySet="ItemTypes" />
+      <End Role="Item" EntitySet="Items" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderTypeDetails_OrderTypes" Association="DatabaseModel.FK_OrderTypeDetails_OrderTypes">
+      <End Role="OrderType" EntitySet="OrderTypes" />
+      <End Role="OrderTypeDetail" EntitySet="OrderTypeDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_ProductGroup1" Association="DatabaseModel.FK_Product_ProductGroup1">
+      <End Role="ProductGroup" EntitySet="ProductGroups" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <EntitySet Name="Units" EntityType="DatabaseModel.Unit" />
+    <EntitySet Name="Quantitatives" EntityType="DatabaseModel.Quantitative" />
+    <EntitySet Name="Assemblies" EntityType="DatabaseModel.Assembly" />
+    <AssociationSet Name="UnitQuantitative" Association="DatabaseModel.UnitQuantitative">
+      <End Role="Unit" EntitySet="Units" />
+      <End Role="Quantitative" EntitySet="Quantitatives" />
+    </AssociationSet>
+    <AssociationSet Name="ProductAssembly" Association="DatabaseModel.ProductAssembly">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Assembly" EntitySet="Assemblies" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="BillDetail">
+    <Key>
+      <PropertyRef Name="BillDetailID" />
+    </Key>
+    <Property Type="Guid" Name="BillDetailID" Nullable="false" />
+    <Property Type="Guid" Name="ProductID" />
+    <Property Type="Decimal" Name="Price" Precision="18" Scale="0" />
+    <Property Type="Single" Name="Quantity" />
+    <Property Type="Guid" Name="BillID" Nullable="false" />
+    <NavigationProperty Name="Bill" Relationship="DatabaseModel.FK_BillBillDetail" FromRole="BillDetail" ToRole="Bill" />
+    <NavigationProperty Name="Product" Relationship="DatabaseModel.FK_BillDetail_Product" FromRole="BillDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Bill">
+    <Key>
+      <PropertyRef Name="BillID" />
+    </Key>
+    <Property Type="Guid" Name="BillID" Nullable="false" />
+    <Property Type="Guid" Name="ItemID" />
+    <Property Type="DateTime" Name="Date" />
+    <Property Type="DateTime" Name="DateEnd" />
+    <Property Type="Guid" Name="EmployeesID" />
+    <Property Type="String" Name="Description" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Amount" Precision="18" Scale="0" />
+    <Property Type="Byte" Name="Discount" />
+    <NavigationProperty Name="BillDetails" Relationship="DatabaseModel.FK_BillBillDetail" FromRole="Bill" ToRole="BillDetail" />
+    <NavigationProperty Name="Item" Relationship="DatabaseModel.FK_Bill_Item" FromRole="Bill" ToRole="Item" />
+    <NavigationProperty Name="Employee" Relationship="DatabaseModel.FK_Bills_Employees" FromRole="Bill" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Config">
+    <Key>
+      <PropertyRef Name="ConfigID" />
+    </Key>
+    <Property Type="Guid" Name="ConfigID" Nullable="false" />
+    <Property Type="String" Name="Company" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Address" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Tel" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Website" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Sologan" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="DateTime" Name="DateEnd" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeesID" />
+    </Key>
+    <Property Type="Guid" Name="EmployeesID" Nullable="false" />
+    <Property Type="String" Name="Password" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Boolean" Name="Sell" />
+    <Property Type="Boolean" Name="InWard" />
+    <Property Type="Boolean" Name="Report" />
+    <Property Type="Boolean" Name="Empl" />
+    <Property Type="Boolean" Name="Product" />
+    <Property Type="Boolean" Name="Item" />
+    <NavigationProperty Name="Bills" Relationship="DatabaseModel.FK_Bills_Employees" FromRole="Employee" ToRole="Bill" />
+    <NavigationProperty Name="Inwards" Relationship="DatabaseModel.FK_Inwards_Employees" FromRole="Employee" ToRole="Inward" />
+    <Property Type="String" Name="LoginName" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InwardDetail">
+    <Key>
+      <PropertyRef Name="InwardDetailID" />
+    </Key>
+    <Property Type="Guid" Name="InwardDetailID" Nullable="false" />
+    <Property Type="Guid" Name="InwardID" />
+    <Property Type="Guid" Name="ProductID" />
+    <Property Type="Decimal" Name="Price" Precision="18" Scale="0" />
+    <Property Type="Int32" Name="Quantity" />
+    <NavigationProperty Name="Inward" Relationship="DatabaseModel.FK_InwardDetail_Inward" FromRole="InwardDetail" ToRole="Inward" />
+    <NavigationProperty Name="Product" Relationship="DatabaseModel.FK_InwardDetail_Product" FromRole="InwardDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Inward">
+    <Key>
+      <PropertyRef Name="InwardID" />
+    </Key>
+    <Property Type="Guid" Name="InwardID" Nullable="false" />
+    <Property Type="Guid" Name="EmployeesID" />
+    <Property Type="DateTime" Name="Date" />
+    <Property Type="Decimal" Name="Amount" Precision="18" Scale="0" />
+    <Property Type="String" Name="Description" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Employee" Relationship="DatabaseModel.FK_Inwards_Employees" FromRole="Inward" ToRole="Employee" />
+    <NavigationProperty Name="InwardDetails" Relationship="DatabaseModel.FK_InwardDetail_Inward" FromRole="Inward" ToRole="InwardDetail" />
+  </EntityType>
+  <EntityType Name="Item">
+    <Key>
+      <PropertyRef Name="ItemID" />
+    </Key>
+    <Property Type="Guid" Name="ItemID" Nullable="false" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Guid" Name="ItemTypeID" />
+    <Property Type="Boolean" Name="Status" />
+    <Property Type="Int16" Name="DisplayOrder" />
+    <Property Type="Boolean" Name="Active" />
+    <NavigationProperty Name="Bills" Relationship="DatabaseModel.FK_Bill_Item" FromRole="Item" ToRole="Bill" />
+    <NavigationProperty Name="ItemType" Relationship="DatabaseModel.FK_Item_ItemType" FromRole="Item" ToRole="ItemType" />
+  </EntityType>
+  <EntityType Name="ItemType">
+    <Key>
+      <PropertyRef Name="ItemTypeID" />
+    </Key>
+    <Property Type="Guid" Name="ItemTypeID" Nullable="false" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Decimal" Name="Price" Precision="18" Scale="0" />
+    <Property Type="Boolean" Name="Timing" />
+    <Property Type="Int16" Name="DisplayOrder" />
+    <Property Type="Boolean" Name="Active" />
+    <NavigationProperty Name="Items" Relationship="DatabaseModel.FK_Item_ItemType" FromRole="ItemType" ToRole="Item" />
+  </EntityType>
+  <EntityType Name="OrderTypeDetail">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Guid" Name="Id" Nullable="false" />
+    <Property Type="Guid" Name="OrderID" Nullable="false" />
+    <Property Type="String" Name="ProductID" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Discount" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderType" Relationship="DatabaseModel.FK_OrderTypeDetails_OrderTypes" FromRole="OrderTypeDetail" ToRole="OrderType" />
+  </EntityType>
+  <EntityType Name="OrderType">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Type="Guid" Name="OrderID" Nullable="false" />
+    <Property Type="String" Name="OrderName" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="String" Name="Description" MaxLength="100" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrderTypeDetails" Relationship="DatabaseModel.FK_OrderTypeDetails_OrderTypes" FromRole="OrderType" ToRole="OrderTypeDetail" />
+  </EntityType>
+  <EntityType Name="ProductGroup">
+    <Key>
+      <PropertyRef Name="ProductGroupID" />
+    </Key>
+    <Property Type="Guid" Name="ProductGroupID" Nullable="false" />
+    <Property Type="String" Name="Name" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="DisplayOrder" />
+    <Property Type="Boolean" Name="Report" />
+    <NavigationProperty Name="Products" Relationship="DatabaseModel.FK_Product_ProductGroup1" FromRole="ProductGroup" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Type="Guid" Name="ProductID" Nullable="false" />
+    <Property Type="Guid" Name="ProductGroupID" Nullable="false" />
+    <Property Type="String" Name="ProductName" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Type="Int16" Name="DisplayOrder" />
+    <Property Type="Guid" Name="UnitID" />
+    <Property Type="Decimal" Name="Price" Precision="18" Scale="0" />
+    <Property Type="Boolean" Name="Active" />
+    <Property Type="Boolean" Name="Show" />
+    <NavigationProperty Name="BillDetails" Relationship="DatabaseModel.FK_BillDetail_Product" FromRole="Product" ToRole="BillDetail" />
+    <NavigationProperty Name="InwardDetails" Relationship="DatabaseModel.FK_InwardDetail_Product" FromRole="Product" ToRole="InwardDetail" />
+    <NavigationProperty Name="ProductGroup" Relationship="DatabaseModel.FK_Product_ProductGroup1" FromRole="Product" ToRole="ProductGroup" />
+    <NavigationProperty Name="Assemblies" Relationship="DatabaseModel.ProductAssembly" FromRole="Product" ToRole="Assembly" />
+  </EntityType>
+  <Association Name="FK_BillBillDetail">
+    <End Type="DatabaseModel.Bill" Role="Bill" Multiplicity="1" />
+    <End Type="DatabaseModel.BillDetail" Role="BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Bill">
+        <PropertyRef Name="BillID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="BillID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BillDetail_Product">
+    <End Type="DatabaseModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="DatabaseModel.BillDetail" Role="BillDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="BillDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bill_Item">
+    <End Type="DatabaseModel.Item" Role="Item" Multiplicity="0..1" />
+    <End Type="DatabaseModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="ItemID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="ItemID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Bills_Employees">
+    <End Type="DatabaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="DatabaseModel.Bill" Role="Bill" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeesID" />
+      </Principal>
+      <Dependent Role="Bill">
+        <PropertyRef Name="EmployeesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inwards_Employees">
+    <End Type="DatabaseModel.Employee" Role="Employee" Multiplicity="0..1" />
+    <End Type="DatabaseModel.Inward" Role="Inward" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="EmployeesID" />
+      </Principal>
+      <Dependent Role="Inward">
+        <PropertyRef Name="EmployeesID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardDetail_Inward">
+    <End Type="DatabaseModel.Inward" Role="Inward" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="DatabaseModel.InwardDetail" Role="InwardDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inward">
+        <PropertyRef Name="InwardID" />
+      </Principal>
+      <Dependent Role="InwardDetail">
+        <PropertyRef Name="InwardID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InwardDetail_Product">
+    <End Type="DatabaseModel.Product" Role="Product" Multiplicity="0..1" />
+    <End Type="DatabaseModel.InwardDetail" Role="InwardDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="InwardDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_ItemType">
+    <End Type="DatabaseModel.ItemType" Role="ItemType" Multiplicity="0..1" />
+    <End Type="DatabaseModel.Item" Role="Item" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ItemType">
+        <PropertyRef Name="ItemTypeID" />
+      </Principal>
+      <Dependent Role="Item">
+        <PropertyRef Name="ItemTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderTypeDetails_OrderTypes">
+    <End Type="DatabaseModel.OrderType" Role="OrderType" Multiplicity="1" />
+    <End Type="DatabaseModel.OrderTypeDetail" Role="OrderTypeDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderType">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderTypeDetail">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_ProductGroup1">
+    <End Type="DatabaseModel.ProductGroup" Role="ProductGroup" Multiplicity="1" />
+    <End Type="DatabaseModel.Product" Role="Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductGroup">
+        <PropertyRef Name="ProductGroupID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="ProductGroupID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Unit">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" annotation:StoreGeneratedPattern="None" Type="Guid" Nullable="false" />
+    <Property Type="String" Name="UnitName" Nullable="false" Unicode="true" />
+    <NavigationProperty Name="Quantitatives" Relationship="DatabaseModel.UnitQuantitative" FromRole="Unit" ToRole="Quantitative" />
+  </EntityType>
+  <EntityType Name="Quantitative">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Type="Guid" Name="UnitID_Parent" Nullable="false" />
+    <Property Type="Guid" Name="UnitID" Nullable="false" />
+    <Property Type="Int16" Name="Quantity" Nullable="false" />
+    <NavigationProperty Name="Unit" Relationship="DatabaseModel.UnitQuantitative" FromRole="Quantitative" ToRole="Unit" />
+  </EntityType>
+  <EntityType Name="Assembly">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Type="Guid" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="None" />
+    <Property Type="Guid" Name="ProductID_Parent" Nullable="false" />
+    <Property Type="Guid" Name="ProductID" Nullable="false" />
+    <Property Type="Int16" Name="Quantity" Nullable="false" />
+    <Property Type="String" Name="Description" Nullable="false" />
+    <NavigationProperty Name="Product" Relationship="DatabaseModel.ProductAssembly" FromRole="Assembly" ToRole="Product" />
+  </EntityType>
+  <Association Name="UnitQuantitative">
+    <End Type="DatabaseModel.Unit" Role="Unit" Multiplicity="1" />
+    <End Type="DatabaseModel.Quantitative" Role="Quantitative" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Unit">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Quantitative">
+        <PropertyRef Name="UnitID_Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProductAssembly">
+    <End Type="DatabaseModel.Product" Role="Product" Multiplicity="1" />
+    <End Type="DatabaseModel.Assembly" Role="Assembly" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="Assembly">
+        <PropertyRef Name="ProductID_Parent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

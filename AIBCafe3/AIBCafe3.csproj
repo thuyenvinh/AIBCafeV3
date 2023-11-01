@@ -1,0 +1,759 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{657DA019-0D48-4442-9E6D-E19499FFCA4E}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>AIBCafe3</RootNamespace>
+    <AssemblyName>AIBCafe3</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>AIBCafeIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>aibsoft.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>C2836739C000B8C59F1A189AB472554051866695</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>aibsoft.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>true</DelaySign>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.BonusSkins.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.BonusSkins.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Charts.v11.1.Core, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.Charts.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.Data.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Data.v11.1.Linq, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.Data.v11.1.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.OfficeSkins.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=95fc6c5621878f0a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.OfficeSkins.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.PivotGrid.v11.1.Core, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.PivotGrid.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v11.1.Core, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.Printing.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v11.1.Core, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.RichEdit.v11.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.Utils.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraBars.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraCharts.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraCharts.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraEditors.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraEditors.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraGrid.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraLayout.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraLayout.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraNavBar.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraNavBar.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPivotGrid.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraPivotGrid.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraPrinting.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraPrinting.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraReports.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraReports.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraRichEdit.v11.1, Version=11.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Can\DevExpress.XtraRichEdit.v11.1.dll</HintPath>
+    </Reference>
+    <Reference Include="gCursor, Version=1.0.3370.18094, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_Com\gCursor.dll</HintPath>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Core">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.Entity">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Management" />
+    <Reference Include="System.Runtime.Serialization">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Security">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Deployment">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+      <Private>False</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AIBCafe3Model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AIBCafe3Model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSetting.Designer.cs">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Installer.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Installer.Designer.cs">
+      <DependentUpon>Installer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="XtraForm2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XtraForm2.Designer.cs">
+      <DependentUpon>XtraForm2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\frmBground.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\frmBground.designer.cs">
+      <DependentUpon>frmBground.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Help\XtraForm1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Help\XtraForm1.Designer.cs">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Help\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Help\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\Data\NhapKho.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\frmNhapKhos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Report\frmNhapKhos.Designer.cs">
+      <DependentUpon>frmNhapKhos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\frmRptBills.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Report\frmRptBills.Designer.cs">
+      <DependentUpon>frmRptBills.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\frmNhapkho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Report\frmNhapkho.Designer.cs">
+      <DependentUpon>frmNhapkho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\frmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\frmAbout.Designer.cs">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Unit_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Unit_Form.Designer.cs">
+      <DependentUpon>Unit_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Assembly_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Assembly_form.Designer.cs">
+      <DependentUpon>Assembly_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class_Check.cs" />
+    <Compile Include="Main.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Class\IniWorker.cs" />
+    <Compile Include="_Form\Import_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Import_Form.Designer.cs">
+      <DependentUpon>Import_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Option_form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Option_form.Designer.cs">
+      <DependentUpon>Option_form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Class\ClassInfo.cs" />
+    <Compile Include="_Class\iniClass.cs" />
+    <Compile Include="_Com\ShortCutProvider.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Com\AIBSoftListView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Form\Employee_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Employee_Form.Designer.cs">
+      <DependentUpon>Employee_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\ProductGroup_Form.cs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\ProductGroup_Form.cs.Designer.cs">
+      <DependentUpon>ProductGroup_Form.cs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Product_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Product_Form.Designer.cs">
+      <DependentUpon>Product_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Inward_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Inward_Form.Designer.cs">
+      <DependentUpon>Inward_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Config_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Config_Form.Designer.cs">
+      <DependentUpon>Config_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Bill_AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Bill_AddForm.Designer.cs">
+      <DependentUpon>Bill_AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Bill_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Bill_Form.Designer.cs">
+      <DependentUpon>Bill_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_Form\Inward_AddForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Inward_AddForm.Designer.cs">
+      <DependentUpon>Inward_AddForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\Item_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\Item_Form.Designer.cs">
+      <DependentUpon>Item_Form.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Form\MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Form\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\Data\dataInventory.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\Data\rptBill.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\frmInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Report\frmInventory.Designer.cs">
+      <DependentUpon>frmInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\ReportHoaDonA6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\ReportHoaDonA6.Designer.cs">
+      <DependentUpon>ReportHoaDonA6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\Data\rptBills.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\ReportHoaDons.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\ReportHoaDons.Designer.cs">
+      <DependentUpon>ReportHoaDons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\rptNhapKho.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\rptNhapKho.Designer.cs">
+      <DependentUpon>rptNhapKho.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\rptNhapKhos.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\rptNhapKhos.Designer.cs">
+      <DependentUpon>rptNhapKhos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\frmRptBill.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="_Report\frmRptBill.Designer.cs">
+      <DependentUpon>frmRptBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="_Report\rptTonKho.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="_Report\rptTonKho.Designer.cs">
+      <DependentUpon>rptTonKho.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSetting.resx">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="XtraForm2.resx">
+      <DependentUpon>XtraForm2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\frmBground.resx">
+      <DependentUpon>frmBground.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Help\XtraForm1.resx">
+      <DependentUpon>XtraForm1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\frmNhapKhos.resx">
+      <DependentUpon>frmNhapKhos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\frmRptBill.vi.resx">
+      <DependentUpon>frmRptBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\frmRptBills.resx">
+      <DependentUpon>frmRptBills.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\frmNhapkho.resx">
+      <DependentUpon>frmNhapkho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.vi.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\frmAbout.resx">
+      <DependentUpon>frmAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Bill_AddForm.resx">
+      <DependentUpon>Bill_AddForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Unit_Form.resx">
+      <DependentUpon>Unit_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Assembly_form.resx">
+      <DependentUpon>Assembly_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Import_Form.resx">
+      <DependentUpon>Import_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Com\AIBSoftListView.resx">
+      <DependentUpon>AIBSoftListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Employee_Form.resx">
+      <DependentUpon>Employee_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Option_form.resx">
+      <DependentUpon>Option_form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\ProductGroup_Form.cs.resx">
+      <DependentUpon>ProductGroup_Form.cs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Product_Form.resx">
+      <DependentUpon>Product_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Bill_Form.resx">
+      <DependentUpon>Bill_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Config_Form.resx">
+      <DependentUpon>Config_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Inward_AddForm.resx">
+      <DependentUpon>Inward_AddForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Inward_Form.resx">
+      <DependentUpon>Inward_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\Item_Form.resx">
+      <DependentUpon>Item_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Form\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\frmInventory.resx">
+      <DependentUpon>frmInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\ReportHoaDonA6.af.resx">
+      <DependentUpon>ReportHoaDonA6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\ReportHoaDonA6.resx">
+      <DependentUpon>ReportHoaDonA6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\ReportHoaDons.resx">
+      <DependentUpon>ReportHoaDons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\rptNhapKho.resx">
+      <DependentUpon>rptNhapKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\rptNhapKhos.resx">
+      <DependentUpon>rptNhapKhos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\frmRptBill.resx">
+      <DependentUpon>frmRptBill.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="_Report\rptTonKho.resx">
+      <DependentUpon>rptTonKho.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="AIBCafe3Model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AIBCafe3Model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AIBCafe3Model.edmx.sqlce" />
+    <None Include="aibsoft.pfx" />
+    <Content Include="BaoCao\DanhSachHoaDon.repx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BaoCao\DSNhapKho.repx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BaoCao\PhieuNhapKho.repx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BaoCao\HoaDon.repx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BaoCao\TonKho.repx">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="App.Config" />
+    <None Include="Option.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\DataSources\AIBCafe3._Data.AIBCafe3Entities.datasource" />
+    <None Include="Properties\DataSources\AIBCafe3._Report.Data.DSachNhapKho.datasource" />
+    <None Include="Properties\DataSources\AIBCafe3._Report.Data.NhapKho.datasource" />
+    <None Include="Properties\DataSources\AIBCafe3._Report.dataBill.datasource" />
+    <None Include="Properties\DataSources\AIBCafe3._Report.rptBill.datasource" />
+    <None Include="Properties\DataSources\AIBCafe3._Report.rptInventory.datasource" />
+    <None Include="Properties\DataSources\AIBCafe3Entities.datasource" />
+    <None Include="Properties\DataSources\Assembly.datasource" />
+    <None Include="Properties\DataSources\Bill.datasource" />
+    <None Include="Properties\DataSources\BillDetail.datasource" />
+    <None Include="Properties\DataSources\Config.datasource" />
+    <None Include="Properties\DataSources\Employee.datasource" />
+    <None Include="Properties\DataSources\Inward.datasource" />
+    <None Include="Properties\DataSources\InwardDetail.datasource" />
+    <None Include="Properties\DataSources\Item.datasource" />
+    <None Include="Properties\DataSources\ItemType.datasource" />
+    <None Include="Properties\DataSources\OrderType.datasource" />
+    <None Include="Properties\DataSources\OrderTypeDetail.datasource" />
+    <None Include="Properties\DataSources\Product.datasource" />
+    <None Include="Properties\DataSources\ProductGroup.datasource" />
+    <None Include="Properties\DataSources\Quantitative.datasource" />
+    <None Include="Properties\DataSources\Unit.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Setting.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="_Data\AIBCafe.sdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <None Include="Report.ini">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <Content Include="Resources\search-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="AIBCafeIcon.ico" />
+    <Content Include="Resources\c26-motohx1-check.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\tea-cup-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\cbx_uncheck.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\printer.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Printer.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Yunomi-tea-cup-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Tourist-guidebook-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Hinokiburo-cypress-bath-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Congthuc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\thudon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\KhuVuc.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\phongban.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\DVTinh.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\KhuVuc1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\ThietLap.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\NhapKho.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\DS.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Nguoidung.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\print-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\LOgin.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\BanHang.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Yunomi-tea-cup-icon1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Tourist-guidebook-icon1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Folder-2-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Shichirin-charcoal-brazier-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Takezake-sake-in-a-bamboo-container-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Futon-bed-icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="_Com\gCursor.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.3.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 3.5 SP2</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
